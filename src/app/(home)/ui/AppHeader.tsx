@@ -236,9 +236,9 @@ export function AppHeader() {
               <Link href="/about" className={pathname == "/about" ? "active" : classes.link}>
                 About Us
               </Link>
-              <a href="#" className={classes.link}>
-                Academy
-              </a>
+              <Link href="/newstype" className={pathname == "/newstype" ? "active" : classes.link} prefetch={false}>
+                NewsType
+              </Link>
             </Group>
 
             <Group className={classes.hiddenMobile}>
