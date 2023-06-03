@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import { NewsType, Prisma } from "@prisma/client";
 
+
 export async function findAllNewsType(): Promise<NewsType[]> {
     return await prisma.newsType.findMany({
         orderBy: { id: "desc"}
