@@ -33,7 +33,7 @@ import {
   IconCoin,
   IconChevronDown,
 } from "@tabler/icons-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -139,6 +139,8 @@ const mockdata = [
 
 export function AppHeader() {
 
+  const router = useRouter();
+
   const pathname = usePathname();
 
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
@@ -242,7 +244,7 @@ export function AppHeader() {
             </Group>
 
             <Group className={classes.hiddenMobile}>
-              <Button variant="default">Log in</Button>
+              <Button variant="default" onClick={()=>router.push("/login")}>Log in</Button>
               <Button>Sign up</Button>
             </Group>
 
@@ -294,7 +296,7 @@ export function AppHeader() {
             />
 
             <Group position="center" grow pb="xl" px="md">
-              <Button variant="default">Log in</Button>
+              <Button variant="default" onClick={()=>router.push("/login")}>Log in</Button>
               <Button>Sign up</Button>
             </Group>
           </ScrollArea>

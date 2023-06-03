@@ -17,7 +17,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 export function LoginContent() {
+
+  const router = useRouter();
+
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -39,8 +45,20 @@ export function LoginContent() {
     mode: "all"
   });
   
-  const onSubmit = (data: FormData) => {
-    console.log(data)
+  const onSubmit = async (data: FormData) => {
+    // console.log(data)
+    const {email, password} = data;
+    const result = await signIn("credentials",{
+      redirect: false,
+      email,
+      password,
+    })
+    if(result?.error){
+      alert(result.error);
+    }else{
+      router.replace('/dashboard');
+    }
+    return false;
   };
 
   return (
